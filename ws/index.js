@@ -3,7 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
 
-require('./database')
+require('./database');
 
 // Middlewares
 app.use(morgan('dev'));
@@ -14,7 +14,10 @@ app.use(cors());
 app.set('port', 8000);
 
 // Rotas
-app.use('/salao', require('./src/routes/salao.routes'));
+app.use('/servico', require('./src/routes/servico.routes'));
+app.use('/agendamento', require('./src/routes/agendamento.routes'));
+app.use('/auth', require('./src/routes/auth.routes'));
+app.use('/login', require('./src/routes/auth.routes'));
 
 app.listen(app.get('port'), () => {
     console.log(`Ws escutando na Porta ${app.get('port')}`);

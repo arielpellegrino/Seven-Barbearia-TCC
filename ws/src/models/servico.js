@@ -1,45 +1,37 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { DataTypes, Sequelize } = require('sequelize');
+const sequelize = require('../../database');
 
-const servico = new Schema({
-    salaoId: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Salao',
-        required: [true, 'Nome é Obrigatório']        
-    },    
-    titulo:{
-        type: String,
-        required: true
+const Servico = sequelize.define('Servico', {
+    titulo: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    preco:{
-        type: Number,
-        required: true
+    preco: {
+      type: DataTypes.FLOAT, // Use FLOAT para números decimais
+      allowNull: false,
+    },  
+    duracao: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
-    comissao:{
-        type: Number,
-        required: true
-    },
-    duracao:{
-        type: Number,
-        required: true
-    },
-    recorrencia:{
-        type: Number,
-        required: true
-    },
-    descricao:{
-        type: String,
-        required: true
+    descricao: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     status: {
-        type: String,
-        enum:['A', 'I', 'E'],        
-        default: 'A'
-    }, 
-    dataCadastro:{
-        type: Date,
-        default: Date.now,
-    },
-});
+      type: DataTypes.ENUM('A', 'I', 'E'),
+      defaultValue: 'A',
+    }
+  });
+  
+// Sincronize o modelo com o banco de dados
+(async () => {
+try {
+    await sequelize.sync({ force: false });
+    console.log('Tabela Servico sincronizada com o banco de dados.');
+} catch (error) {
+    console.error('Erro ao sincronizar tabela com o banco de dados:', error);
+}
+})();
 
-module.exports = mongoose.model('Servico', servico);
+module.exports = Servico;

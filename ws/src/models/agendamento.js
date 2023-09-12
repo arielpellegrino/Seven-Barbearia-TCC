@@ -1,48 +1,36 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { DataTypes } = require('sequelize');
+const sequelize = require('../../database');
 
-const salaoCliente = new Schema({     
-    salaoId:
-    {
-        type: mongoose.Types.ObjectId,
-        ref: 'Salao',
-        required: [true, 'Salão é Obrigatório']               
-    },     
-    clienteId: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Cliente',
-        required: [true, 'Cliente é Obrigatório']        
-    }, 
+const Agendamento = sequelize.define('Agendamento', {
     servicoId: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Servico',
-        required: [true, 'Servico é Obrigatório']        
-    }, 
-    colaboradorId: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Colaborador',
-        required: [true, 'Colaborador é Obrigatório']        
-    },   
-    data:{
-        type: Date,
-        rquired: true
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Servicos', // Substitua 'Servico' pelo nome correto da tabela de serviços
+            key: 'id',
+        },
     },
-    comissao:{
-        type: Number,
-        rquired: true
+    data: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
     },
-    valor:{
-        type: Number,
-        rquired: true
+    hora: {
+        type: DataTypes.TIME,
+        allowNull: false,
     },
-    transactionId:{
-        type: String,
-        rquired: true
-    },
-    dataCadastro:{
-        type: Date,
-        default: Date.now,
+    valor: {
+        type: DataTypes.FLOAT, // Use FLOAT para números decimais
+        allowNull: false,
     },
 });
 
-module.exports = mongoose.model('SalaoCliente', salaoCliente);
+(async () => {
+    try {
+        await sequelize.sync({ force: false });
+        console.log('Tabela Agendamento sincronizada com o banco de dados.');
+    } catch (error) {
+        console.error('Erro ao sincronizar tabela com o banco de dados:', error);
+    }
+})();
+
+module.exports = Agendamento;

@@ -1,11 +1,14 @@
-const mongoose = require('mongoose');
-const URI = 'mongodb+srv://trlucas:YPlBSFVar4KQQk4h@sevenbarbearia.olng3tn.mongodb.net/?retryWrites=true&w=majority';
+const { Sequelize } = require('sequelize');
 
-// mongoose.set('useFindAndModify', false);
-// mongoose.set('useCreateIndex', true);
-// mongoose.set('useUnifiedTopology', true);
+const sequelize = new Sequelize({
+  dialect: 'mysql',
+  host: 'localhost',
+  username: 'seven',
+  password: 'YPlBSFVar4KQQk4h',
+  database: 'seven',
+  define: {
+    timestamps: true,
+  },
+});
 
-mongoose
-    .connect(URI)
-    .then(() => console.log('DB On'))
-    .catch(() => console.log(err));
+module.exports = sequelize; // Exporte a instância do sequelize
