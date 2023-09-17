@@ -7,7 +7,7 @@ const Servico = sequelize.define('Servico', {
       allowNull: false,
     },
     preco: {
-      type: DataTypes.FLOAT, // Use FLOAT para números decimais
+      type: DataTypes.FLOAT, 
       allowNull: false,
     },  
     duracao: {
