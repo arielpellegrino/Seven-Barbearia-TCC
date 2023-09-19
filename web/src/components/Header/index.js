@@ -1,5 +1,3 @@
-import logo from "../../assets/logo.png";
-
 const Header = () => {
   return (
     <header class="container-fluid d-flex justify-content-end">
@@ -8,7 +6,7 @@ const Header = () => {
           <span class="d-block m-0 p-0 text-white">admin</span>
           <small class="m-0 p-0">usuário admin</small>
         </div>
-        <img src="https://icon-library.com/images/default-user-icon/default-user-icon-9.jpg" />
+        <img src="https://icon-library.com/images/default-user-icon/default-user-icon-9.jpg" alt={"imagem usuario"}/>
         <span class="mdi mdi-chevron-down"></span>
       </div>
     </header>

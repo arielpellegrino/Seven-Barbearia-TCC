@@ -6,9 +6,6 @@ const Servico = require('../models/servico');
 const Arquivos = require('../models/arquivos');
 const moment = require('moment');
 
-/*
-  FAZER NA #01
-*/
 router.post('/', async (req, res) => {
   var busboy = new Busboy({ headers: req.headers });
   busboy.on('finish', async () => {

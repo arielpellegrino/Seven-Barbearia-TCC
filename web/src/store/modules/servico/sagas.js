@@ -42,7 +42,7 @@ export function* addServico() {
 
     notification('success', {
       placement: 'topStart',
-      title: 'Feitoooo!!',
+      title: 'Sucesso',
       description: 'Serviço salvo com sucesso!',
     });
   } catch (err) {

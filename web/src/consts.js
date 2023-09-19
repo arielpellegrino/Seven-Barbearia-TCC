@@ -1,4 +1,4 @@
 export default {
-  salaoId: '609310a1002ab333d1ae1716',
+  salaoId: '650a0aa95c2f96bf8dbd194d',
   clienteId: '',
 };
